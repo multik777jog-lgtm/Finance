@@ -55,13 +55,65 @@ textarea{width:100%;background:var(--c2);border:1px solid var(--bd);border-radiu
 .ib.lg{width:50px;height:50px}.ib.lg svg.i{width:28px;height:28px}
 .sh{position:fixed;inset:0;z-index:30;background:rgba(5,6,24,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;animation:in .2s}.sh>div{width:100%;max-width:480px;max-height:88%;overflow-y:auto;background:linear-gradient(160deg,var(--bg2),var(--bg1));border:1px solid var(--bd);border-radius:26px 26px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}.dot{position:absolute;top:6px;right:7px;width:9px;height:9px;border-radius:50%;background:var(--bad)}
 .toast{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--ok);color:#06210f;padding:10px 18px;border-radius:20px;font-weight:600;animation:in .3s;z-index:9}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--bg1)}
+body{overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+button,[onclick],label{touch-action:manipulation}
+#app{height:100%;height:calc(100dvh - env(safe-area-inset-top,0px));height:calc(var(--vh,100dvh) - env(safe-area-inset-top,0px));padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+main{overflow-x:hidden;overflow-wrap:break-word;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain}
+body.kb nav{display:none}
+.leg span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hero svg{width:min(300px,78vw,36vh)}
+.ov{padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+@media (min-width:420px){main{padding-left:22px;padding-right:22px}h1{font-size:26px}}
+@media (max-width:374px){
+main{padding:10px 12px calc(80px + env(safe-area-inset-bottom,0px))}
+h1{font-size:20px;margin:2px 0 10px}h3{font-size:14px}
+.card{padding:12px;border-radius:20px;margin-bottom:10px}
+.big{font-size:26px}.btn{padding:14px;font-size:16px}
+nav{width:calc(100% - 20px)}nav button{font-size:9px}nav svg.i{width:18px;height:18px}
+.cat{flex-basis:66px;font-size:10px}.cat .ci{width:34px;height:34px;font-size:19px}
+.seg button{font-size:12px;padding:8px 0}
+.tiles{gap:6px}.tiles button{font-size:11px;padding:12px 2px}
+.tx .ico{width:38px;height:38px;border-radius:12px}
+.lr{padding:12px;font-size:14px}
+.sh>div{padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px))}
+.cp{padding:10px;font-size:12px}
+.leg{font-size:11px}.leg b{width:60px}.leg u{display:none}svg[width="150"]{width:110px;height:110px}
+}
+@media (max-height:700px){main{padding-top:6px}.hero{margin-bottom:-14px}}
+@media (orientation:landscape) and (max-height:520px){
+#app{max-width:680px}
+main{padding-bottom:78px}
+nav{width:min(380px,60%)}nav button{padding:4px 0 3px}
+.hero svg{width:min(170px,42vh)}
+.sh>div{max-height:94%}
+}
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Деньги">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#080D2B">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef0ff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080D2B">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Деньги">
+<link rel="apple-touch-startup-image" href="splash/640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/828x1792.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1242x2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1080x2340.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1284x2778.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1179x2556.png" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1260x2736.png" media="(device-width: 420px) and (device-height: 912px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="splash/1320x2868.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 </head>
 <body>
 <div id="app"><main id="v"></main><nav id="nav"></nav></div>
@@ -272,6 +324,7 @@ h+='<div class="card"><h3>Тема оформления</h3><div class="seg" sty
 h+='<div class="card"><h3>Категории расходов</h3>'+CATS.map(function(c,i){return '<div class="tx" style="padding:8px 0"><div class="ico" style="background:'+c[3]+'"><span style="filter:grayscale(1) brightness(8)">'+c[2]+'</span></div><div class="m" style="cursor:pointer" onclick="subSheet('+i+')"><div>'+esc(c[1])+'</div><div class="sec" style="white-space:normal;font-size:12px">'+((c[4]||[]).length?esc((c[4]||[]).map(function(x){return x.name}).join(", ")):"Добавить подкатегории")+'</div></div><button class="del" onclick="catMove('+i+',-1)" style="opacity:'+(i?1:.25)+'">▲</button><button class="del" onclick="catMove('+i+',1)" style="opacity:'+(i<CATS.length-1?1:.25)+'">▼</button><button class="ib" onclick="catSheet('+i+')" style="width:34px;height:34px;border-radius:12px">'+ic("edit")+'</button></div>'}).join("")+'<button class="btn ghost" style="margin-top:10px;padding:11px;font-size:14px" onclick="catSheet(-1)">+ Добавить категорию</button><button class="btn ghost" style="margin-top:8px;padding:11px;font-size:14px" onclick="presetSheet()">Загрузить мои категории и подкатегории</button></div>';
 h+='<div class="card"><h3>Уведомления</h3>'+sw("nSal","Скоро зарплата")+sw("nLow","Низкий остаток и минус")+sw("nOver","Превышение плана")+sw("nWish","Копилки и цели")+'<div class="sec" style="margin:8px 0 6px">Напоминать о зарплате за</div><div class="seg" style="margin:0 0 10px">'+[1,3,5].map(function(d){return '<button class="'+((n.salDays||3)==d?"on":"")+'" onclick="setSal('+d+')">'+d+' дн.</button>'}).join("")+'</div><button class="btn ghost" style="padding:11px;font-size:14px" onclick="S.dis={};save();toast(\'Скрытые уведомления возвращены\')">Вернуть скрытые уведомления</button></div>';
 h+='<div class="card"><h3>Резервная копия и перенос</h3><div class="sec" style="margin-bottom:10px">В бэкап входят траты, пополнения, карты, желания, планы, график зарплаты и категории. Чтобы перенести данные на другой телефон: сделайте бэкап здесь, а на другом телефоне откройте эти настройки и нажмите «Добавить из файла».</div><button class="btn" style="margin-bottom:8px;font-size:15px;padding:12px" onclick="share()">Поделиться бэкапом</button><button class="btn ghost" style="margin-bottom:8px;font-size:15px;padding:12px" onclick="exp()">Скачать бэкап в файл</button><button class="btn ghost" style="font-size:15px;padding:12px" onclick="$(\'f\').click()">Добавить из файла</button><input type="file" id="f" accept=".json" style="display:none" onchange="imp(this)"></div>';
+h+='<div class="card"><h3>Выгрузка в Excel</h3><div class="sec" style="margin-bottom:10px">Все ваши данные одним файлом .xlsx: расходы, поступления, итоги по месяцам и категориям, план, желания, замороженные средства. Можно выбрать период.</div><button class="btn" style="font-size:15px;padding:12px" onclick="exportSheet()">Выгрузить в Excel (.xlsx)</button></div>';
 h+='<div class="card"><h3>Импорт из Excel</h3><div class="sec" style="margin-bottom:10px">Загрузите свою таблицу (.xlsx) с расходами «Дата, Категория, Потрачено» и поступлениями. Перед загрузкой вы увидите предпросмотр и сможете сопоставить категории. Повторная загрузка того же файла не создаёт дублей. Нужен интернет, чтобы подгрузить библиотеку чтения.</div><button class="btn ghost" style="font-size:15px;padding:12px" onclick="$(\'xf\').click()">Выбрать файл .xlsx</button><input type="file" id="xf" accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none" onchange="impRead(this)"></div>';
 h+='<div class="card"><h3>Данные</h3><div class="sec" style="margin-bottom:10px">Операций: '+S.tx.length+' · карт: '+S.cards.length+' · желаний: '+S.wishes.length+'</div><button class="btn ghost" style="font-size:15px;padding:12px;color:var(--bad)" onclick="resetSheet()">Сбросить все данные</button></div>';
 h+='<div class="card"><h3>Приложение</h3><div class="sec" style="margin-bottom:10px">Если после обновления файлов на GitHub приложение выглядит по-старому, нажмите кнопку. Ваши данные сохранятся.</div><button class="btn ghost" style="font-size:15px;padding:12px" onclick="refreshApp()">Обновить приложение</button></div>';
@@ -452,6 +505,46 @@ function perMonth(){var n=new Date();$("pf").value=iso(new Date(n.getFullYear(),
 function savePer(){var f=$("pf").value,t=$("pt").value;if(!f||!t)return toast("Укажите обе даты");if(t<=f)return toast("Конец периода должен быть позже начала");if(t<iso(new Date()))return toast("Конец периода уже прошёл");S.per={from:f,to:t};S.salary.next=t;save();closeSheet();render();toast("Период задан ✓")}
 function resetPer(){S.per=null;save();closeSheet();render();toast("Период по графику")}
 
+var xpm="all",xr1="",xr2="";
+function xd(ds){var p=ds.split("-");return new Date(+p[0],+p[1]-1,+p[2],12,0,0)}
+function xmn(k){return new Date(+k.slice(0,4),+k.slice(5,7)-1,1).toLocaleDateString("ru-RU",{month:"long",year:"numeric"}).replace(/\s*г\.?$/,"")}
+function xData(from,to){var inR=function(t){var d=iso(new Date(t.ts));return (!from||d>=from)&&(!to||d<=to)},R=function(k){return k/100},
+tx=S.tx.filter(inR).sort(function(a,b){return a.ts-b.ts}),ex=tx.filter(function(t){return t.t=="exp"}),inc=tx.filter(function(t){return t.t=="inc"}),
+cn=function(id){return cinfo(id)[1]},sn=function(t){var s=t.sub?subs(t.cat).filter(function(x){return x.id==t.sub})[0]:null;return s?s.name:""},
+mk=function(t){return iso(new Date(t.ts)).slice(0,7)},sum=function(a){return a.reduce(function(x,t){return x+t.amt},0)},out=[];
+var allInc=S.tx.filter(function(t){return t.t=="inc"&&cnt(t)}),allExp=S.tx.filter(function(t){return t.t=="exp"&&cnt(t)});
+out.push(["Сводка",[["Показатель","Значение"],["Дата выгрузки",xd(iso(new Date()))],["Период выгрузки",from||to?(from?fd(from):"…")+" — "+(to?fd(to):"…"):"Всё время"],["Начальный остаток, ₽",R(S.start)],["Пополнения за всё время, ₽",R(sum(allInc))],["Расходы за всё время, ₽",R(sum(allExp))],["Отложено в копилки, ₽",R(wsaved())],["Заморожено (долг, арест), ₽",R(frozenSum())],["Общий баланс, ₽",R(bal())],["Расходов в выгрузке",ex.length],["Расходов в выгрузке, ₽",R(sum(ex))],["Поступлений в выгрузке, ₽",R(sum(inc))]],{w:[34,22],amt:[1]}]);
+out.push(["Расходы",[["Дата","Категория","Подкатегория","Сумма, ₽","Комментарий"]].concat(ex.map(function(t){return [xd(iso(new Date(t.ts))),cn(t.cat),sn(t),R(t.amt),(t.note||"").replace(/\n/g," | ")]})).concat([["","","Итого",R(sum(ex)),""]]),{w:[12,30,26,14,60],amt:[3],dt:[0]}]);
+out.push(["Поступления",[["Дата","Источник","Сумма, ₽"]].concat(inc.map(function(t){return [xd(iso(new Date(t.ts))),t.note||"Доход",R(t.amt)]})).concat([["","Итого",R(sum(inc))]]),{w:[12,40,14],amt:[2],dt:[0]}]);
+var ms={};tx.forEach(function(t){var k=mk(t);ms[k]=ms[k]||{i:0,e:0};if(t.t=="inc")ms[k].i+=t.amt;else ms[k].e+=t.amt});
+var eb={},cum=S.start,am={};S.tx.filter(cnt).forEach(function(t){var k=mk(t);am[k]=(am[k]||0)+(t.t=="inc"?t.amt:-t.amt)});Object.keys(am).sort().forEach(function(k){cum+=am[k];eb[k]=cum});
+var mks=Object.keys(ms).sort();
+out.push(["По месяцам",[["Месяц","Доходы, ₽","Расходы, ₽","Разница, ₽","Остаток на конец месяца, ₽"]].concat(mks.map(function(k){return [xmn(k),R(ms[k].i),R(ms[k].e),R(ms[k].i-ms[k].e),eb[k]!=null?R(eb[k]):""]})),{w:[20,16,16,16,26],amt:[1,2,3,4]}]);
+var cats=CATS.map(function(c){return c[0]}),pv={};ex.forEach(function(t){if(cats.indexOf(t.cat)<0)cats.push(t.cat);pv[t.cat]=pv[t.cat]||{};pv[t.cat][mk(t)]=(pv[t.cat][mk(t)]||0)+t.amt});
+var em=Object.keys(ms).filter(function(k){return ms[k].e>0}).sort(),prow=[["Категория"].concat(em.map(xmn),["Итого, ₽"])],tcol={};
+cats.forEach(function(c){if(!pv[c])return;var t=0,r=[cn(c)];em.forEach(function(k){var v=pv[c][k]||0;t+=v;tcol[k]=(tcol[k]||0)+v;r.push(v?R(v):"")});r.push(R(t));prow.push(r)});
+prow.push(["Итого"].concat(em.map(function(k){return R(tcol[k]||0)}),[R(sum(ex))]));
+var ac=[];for(var i=1;i<=em.length+1;i++)ac.push(i);out.push(["Категории по месяцам",prow,{w:[34].concat(em.map(function(){return 16}),[16]),amt:ac}]);
+var sb={};ex.forEach(function(t){if(!t.sub)return;var k=t.cat+"|"+t.sub;sb[k]=sb[k]||{c:t.cat,s:sn(t),n:0,a:0};sb[k].n++;sb[k].a+=t.amt});
+out.push(["Подкатегории",[["Категория","Подкатегория","Операций","Сумма, ₽"]].concat(Object.keys(sb).map(function(k){return sb[k]}).sort(function(a,b){return b.a-a.a}).map(function(x){return [cn(x.c),x.s,x.n,R(x.a)]})),{w:[34,30,12,14],amt:[3]}]);
+var pk=Object.keys(S.mplan||{}).filter(function(k){return (!from||k>=from.slice(0,7))&&(!to||k<=to.slice(0,7))}).sort(),pr=[["Месяц","Категория","План, ₽","Факт, ₽","Остаток, ₽"]];
+pk.forEach(function(k){var pl=S.mplan[k]||{};cats.forEach(function(c){var p=pl[c]||0,f=monthCat(k,c);if(p>0||f>0)pr.push([xmn(k),cn(c),R(p),R(f),R(p-f)])})});
+out.push(["План по месяцам",pr,{w:[20,34,14,14,14],amt:[2,3,4]}]);
+out.push(["Желания",[["Желание","Цель, ₽","Накоплено, ₽","Осталось, ₽","Срок","Взносов выполнено","Взносов всего"]].concat(S.wishes.map(function(w){var sv=wsv(w);return [w.name,R(w.target),R(sv),R(Math.max(w.target-sv,0)),xd(w.dl),w.plan.filter(function(p){return p.done}).length,w.plan.length]})),{w:[30,14,16,14,12,18,14],amt:[1,2,3],dt:[4]}]);
+var wp=[["Желание","Дата взноса","Сумма, ₽","Внесён"]];S.wishes.forEach(function(w){w.plan.forEach(function(p){wp.push([w.name,xd(p.d),R(p.amt),p.done?"да":"нет"])})});
+out.push(["Взносы в копилки",wp,{w:[30,14,14,10],amt:[2],dt:[1]}]);
+out.push(["Заморожено",[["Кто или что","Тип","Дата","Сумма, ₽","Вернули, ₽","Осталось, ₽","Статус","Комментарий"]].concat((S.frozen||[]).map(function(f){return [f.name,(FK[f.kind]||FK.other)[1],xd(f.d),R(f.amt),R(f.back||0),R(Math.max(f.amt-(f.back||0),0)),f.closed?"возвращено":"заморожено",f.note||""]})),{w:[28,20,12,14,14,14,14,40],amt:[3,4,5],dt:[2]}]);
+return out}
+function xBook(data){var wb=XLSX.utils.book_new();data.forEach(function(d){var ws=XLSX.utils.aoa_to_sheet(d[1],{cellDates:true}),o=d[2]||{};ws["!cols"]=(o.w||[]).map(function(w){return {wch:w}});
+Object.keys(ws).forEach(function(a){if(a[0]=="!")return;var c=ws[a],col=XLSX.utils.decode_cell(a).c,r=XLSX.utils.decode_cell(a).r;if(r==0)return;if(c.t=="n"&&(o.amt||[]).indexOf(col)>=0)c.z="#,##0.00";if(c.t=="d"&&(o.dt||[]).indexOf(col)>=0)c.z="dd.mm.yyyy"});
+XLSX.utils.book_append_sheet(wb,ws,d[0].slice(0,31))});return wb}
+function exportSheet(){var n=new Date();if(!xr1)xr1=iso(new Date(n.getFullYear(),n.getMonth(),1));if(!xr2)xr2=iso(n);
+sheet('<h3>Выгрузка в Excel</h3><div class="sec" style="margin-bottom:8px">Файл .xlsx с листами: сводка, расходы, поступления, итоги по месяцам, категории по месяцам, подкатегории, план по месяцам, желания и взносы, замороженные средства.</div><div class="sec" style="margin-bottom:6px">Период</div><div class="seg">'+[["all","Всё время"],["month","Этот месяц"],["range","Свой период"]].map(function(x){return '<button class="'+(xpm==x[0]?"on":"")+'" onclick="xpm=\''+x[0]+'\';exportSheet()">'+x[1]+'</button>'}).join("")+'</div>'+(xpm=="range"?'<div class="sec">С даты</div><input id="xe1" type="date" value="'+xr1+'" onchange="xr1=this.value"><div class="sec">По дату</div><input id="xe2" type="date" value="'+xr2+'" onchange="xr2=this.value">':'')+'<button class="btn" onclick="exportXlsx()">Выгрузить</button><button class="btn ghost" style="margin-top:8px" onclick="closeSheet()">Отмена</button><div class="sec" style="margin-top:10px">Нужен интернет, чтобы подгрузить библиотеку создания файла. Файл откроется в окне «Поделиться» (Файлы, почта, мессенджеры).</div>')}
+function exportXlsx(){var from="",to="",n=new Date();if(xpm=="month"){from=iso(new Date(n.getFullYear(),n.getMonth(),1));to=iso(new Date(n.getFullYear(),n.getMonth()+1,0))}else if(xpm=="range"){from=xr1;to=xr2;if(!from||!to||to<from)return toast("Выберите период")}
+toast("Готовлю файл…");loadXlsx(function(){try{var wb=xBook(xData(from,to)),buf=XLSX.write(wb,{bookType:"xlsx",type:"array",cellDates:true});closeSheet();xDeliver(buf,"finance-"+iso(n)+".xlsx")}catch(e){toast("Не удалось создать файл")}},function(){toast("Нужен интернет для создания файла")})}
+function xDeliver(buf,name){var f=new File([buf],name,{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});try{if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:name}).catch(function(e){if(e.name!="AbortError")xDl(f)});return}}catch(e){}xDl(f)}
+function xDl(f){var a=document.createElement("a");a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();setTimeout(function(){a.remove()},500)}
+
 function iso(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
 function mkPlan(rem,dl){var n0=new Date(),y=n0.getFullYear(),m=n0.getMonth(),d=n0.getDate(),end=new Date(dl+"T00:00"),ds=[],i=0;while(i<120){var x=new Date(y,m+i,1);x.setDate(Math.min(d,new Date(y,m+i+1,0).getDate()));if(x>=end&&i>0)break;ds.push(x);i++}var n=ds.length,per=Math.floor(rem/n);return ds.map(function(x,j){return {d:iso(x),amt:j==n-1?rem-per*(n-1):per,done:false}})}
 function wsaved(){return (S.wishes||[]).reduce(function(a,w){return a+w.plan.reduce(function(b,p){return b+(p.done?p.amt:0)},0)},0)}
@@ -476,6 +569,10 @@ function exp(){var a=document.createElement("a");a.href=URL.createObjectURL(new 
 function imp(i){var f=i.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!Array.isArray(d.tx))throw 0;if(confirm("Объединить с текущими данными?\nОК — объединить, Отмена — заменить полностью")){var ids={};S.tx.forEach(function(t){ids[t.id]=1});d.tx.forEach(function(t){if(!ids[t.id])S.tx.push(t)});var cd={};S.cards.forEach(function(c){cd[c.id]=1});(d.cards||[]).forEach(function(c){if(!cd[c.id])S.cards.push(c)});var wd={};S.wishes.forEach(function(w){wd[w.id]=1});(d.wishes||[]).forEach(function(w){if(!wd[w.id])S.wishes.push(w)});Object.keys(d.mplan||{}).forEach(function(k){if(!S.mplan[k])S.mplan[k]=d.mplan[k]});if(!S.pay.length)S.pay=d.pay||[];(d.hol||[]).forEach(function(x){if(S.hol.indexOf(x)<0)S.hol.push(x)});S.paid=Object.assign({},d.paid||{},S.paid);var fzi={};S.frozen.forEach(function(f){fzi[f.id]=1});(d.frozen||[]).forEach(function(f){if(!fzi[f.id])S.frozen.push(f)});if(d.cats&&d.cats.length){S.cats=S.cats||CATS.map(function(c){return c.slice()});d.cats.forEach(function(c){if(!S.cats.some(function(x){return x[0]==c[0]}))S.cats.push(c)})}S.start=S.start||d.start||0;if(!S.salary.next&&d.salary)S.salary=d.salary}else{S=Object.assign({cards:[],wishes:[],plan:{},mplan:{},dis:{},pay:[],hol:[],paid:{},set:{},frozen:[]},d)}CATS=(S.cats&&S.cats.length)?S.cats:defCats();save();theme();render();toast("Данные добавлены ✓")}catch(e){toast("Неверный файл")}};r.readAsText(f)}
 function render(){autoPay();syncNext();$("v").innerHTML=[spend,list,stats,cards,prof,wishes,incomes,planMonth,paysched,settings,frozen][tab]();$("v").style.animation="none";void $("v").offsetWidth;$("v").style.animation="";
 $("nav").innerHTML=[["plus","Трата"],["list","Расходы"],["chart","Аналитика"],["card","Карты"],["user","ЛК"]].map(function(t,i){return '<button class="'+(i==(tab>=5?4:tab)?"on":"")+'" onclick="sdate=\'\';dateOpen=false;tab='+i+';render()">'+ic(t[0])+t[1]+'</button>'}).join("")}
+(function(){var R=document.documentElement,txt=/^(INPUT|TEXTAREA|SELECT)$/,no=/checkbox|radio|button|file|submit|range/;
+document.addEventListener("focusin",function(e){var t=e.target;if(t&&txt.test(t.tagName)&&!no.test(t.type||""))document.body.classList.add("kb")});
+document.addEventListener("focusout",function(){setTimeout(function(){var a=document.activeElement;if(!a||!txt.test(a.tagName)||no.test(a.type||"")){document.body.classList.remove("kb");window.scrollTo(0,0)}},120)});
+if(window.visualViewport){var f=function(){var v=window.visualViewport;if(window.innerHeight-v.height>120)R.style.setProperty("--vh",v.height+"px");else R.style.removeProperty("--vh")};visualViewport.addEventListener("resize",f);visualViewport.addEventListener("scroll",f)}})();
 openDB(function(){load(function(){theme();render()})});
 </script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})</script>
