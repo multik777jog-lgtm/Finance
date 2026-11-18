@@ -122,9 +122,6 @@ nav{width:min(380px,60%)}nav button{padding:4px 0 3px}
 </head>
 <body>
 <div id="app"><main id="v"></main><nav id="nav"></nav></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <script>
 var DEF=[["food","Продукты","🍎","#E24BDB"],["sub","Подписки","👑","#FB923C"],["med","Медицина","➕","#6C7CFF"],["util","ЖКУ","🏠","#22C7F0"],["trn","Транспорт","🚌","#34D399"],["caf","Кафе","☕","#FACC15"],["fun","Развлечения","🎮","#F472B6"],["shop","Покупки","🛍️","#A78BFA"],["oth","Прочие расходы","📦","#8B5CF6"]];var CATS=DEF.map(function(c){return c.slice()});var OTH=["x","Без категории","📦","#94A3B8"];
 var P={plus:'<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',list:'<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',bell:'<path d="M6 16v-5a6 6 0 0112 0v5l2 2H4zM10 21h4"/>',dl:'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',wal:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 13h2"/>',chev:'<path d="M9 6l6 6-6 6"/>',l:'<path d="M15 6l-6 6 6 6"/>',moon:'<path d="M20 14A8 8 0 019.5 4 8 8 0 1020 14z"/>',card:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/>',up:'<path d="M12 16V5M7 9l5-5 5 5M5 20h14"/>',edit:'<path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-4-4L4 16v4zM13.5 6.5l4 4"/>',downc:'<path d="M6 9l6 6 6-6"/>',upc:'<path d="M6 15l6-6 6 6"/>',cam:'<path d="M5 7h1a2 2 0 0 0 2-2 1 1 0 0 1 1-1h6a1 1 0 0 1 1 1 2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/><circle cx="12" cy="13" r="3"/>',gear:'<path d="M10.3 4.3c.4-1.8 2.9-1.8 3.4 0a1.7 1.7 0 0 0 2.6 1.1c1.5-.9 3.3.8 2.4 2.4a1.7 1.7 0 0 0 1 2.5c1.8.4 1.8 2.9 0 3.4a1.7 1.7 0 0 0-1 2.6c.9 1.5-.8 3.3-2.4 2.4a1.7 1.7 0 0 0-2.6 1c-.4 1.8-2.9 1.8-3.4 0a1.7 1.7 0 0 0-2.6-1c-1.5.9-3.3-.8-2.4-2.4a1.7 1.7 0 0 0-1-2.6c-1.8-.4-1.8-2.9 0-3.4a1.7 1.7 0 0 0 1-2.5c-.9-1.5.8-3.3 2.4-2.4 1 .6 2.3.1 2.6-1.1z"/><circle cx="12" cy="12" r="3"/>'};
@@ -716,7 +713,9 @@ $("nav").innerHTML=[["plus","Трата"],["list","Расходы"],["chart","А
 document.addEventListener("focusin",function(e){var t=e.target;if(t&&txt.test(t.tagName)&&!no.test(t.type||""))document.body.classList.add("kb")});
 document.addEventListener("focusout",function(){setTimeout(function(){var a=document.activeElement;if(!a||!txt.test(a.tagName)||no.test(a.type||"")){document.body.classList.remove("kb");window.scrollTo(0,0)}},120)});
 if(window.visualViewport){var f=function(){var v=window.visualViewport;if(window.innerHeight-v.height>120)R.style.setProperty("--vh",v.height+"px");else R.style.removeProperty("--vh")};visualViewport.addEventListener("resize",f);visualViewport.addEventListener("scroll",f)}})();
-openDB(function(){load(function(){theme();fillCardSvgs();render()})});
+function loadLib(u,cb){try{var e=document.createElement("script");e.src=u;e.async=true;e.onload=function(){if(cb)cb()};e.onerror=function(){};document.head.appendChild(e)}catch(x){}}
+function loadLibs(){["https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js","https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"].forEach(function(u){loadLib(u,fillCardSvgs)});loadLib("https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js")}
+openDB(function(){load(function(){theme();try{render()}catch(e){var v=$("v");if(v)v.innerHTML='<div class="card"><h3>Не удалось показать экран</h3><div class="sec" style="margin-bottom:10px">'+esc(e&&e.message||e)+'</div><button class="btn" onclick="tab=0;render()">На главный экран</button></div>'}setTimeout(loadLibs,200)})});
 </script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})</script>
 </body>
