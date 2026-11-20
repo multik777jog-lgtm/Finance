@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Деньги под контролем</title>
 <style>
@@ -70,6 +70,7 @@ body.kb nav{display:none}
 .hero svg{width:min(300px,78vw,36vh)}
 .ov{padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
 .mi{min-height:64px;gap:12px;text-align:left;margin-bottom:10px}.mi .mic{width:38px;height:38px;border-radius:12px;background:var(--c1);border:1px solid var(--bd);display:grid;place-items:center;font-size:19px;flex:none}.mi .mt{flex:1;min-width:0;display:block;line-height:1.25}.mi .mt small{display:block;color:var(--tx2);font-size:12px;margin-top:2px}.mi .mv{color:var(--tx2);font-size:14px;white-space:nowrap}.mi svg.i{flex:none;color:var(--tx2)}
+html,body{touch-action:pan-x pan-y}
 @media (min-width:420px){main{padding-left:22px;padding-right:22px}h1{font-size:26px}}
 @media (max-width:374px){
 main{padding:10px 12px calc(80px + env(safe-area-inset-bottom,0px))}
@@ -767,7 +768,8 @@ function qrDraw(svg,t){var q=qrcode(0,"M");q.addData(t);q.make();var n=q.getModu
 function share(){var f=new File([JSON.stringify(S)],"finance-backup.json",{type:"application/json"});try{if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:"Бэкап финансов"}).catch(function(e){if(e.name!="AbortError")exp()});return}}catch(e){}exp()}
 function exp(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="finance-backup.json";a.click()}
 function imp(i){var f=i.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!Array.isArray(d.tx))throw 0;if(confirm("Объединить с текущими данными?\nОК — объединить, Отмена — заменить полностью")){var ids={};S.tx.forEach(function(t){ids[t.id]=1});d.tx.forEach(function(t){if(!ids[t.id])S.tx.push(t)});var cd={};S.cards.forEach(function(c){cd[c.id]=1});(d.cards||[]).forEach(function(c){if(!cd[c.id])S.cards.push(c)});var wd={};S.wishes.forEach(function(w){wd[w.id]=1});(d.wishes||[]).forEach(function(w){if(!wd[w.id])S.wishes.push(w)});Object.keys(d.mplan||{}).forEach(function(k){if(!S.mplan[k])S.mplan[k]=d.mplan[k]});Object.keys(d.pplans||{}).forEach(function(k){if(!pps()[k])pps()[k]=d.pplans[k]});var vi0={};vacL().forEach(function(v){vi0[v.id]=1});(d.vac||[]).forEach(function(v){if(!vi0[v.id])S.vac.push(v)});var si0={};sickL().forEach(function(v){si0[v.id]=1});(d.sick||[]).forEach(function(v){if(!si0[v.id])S.sick.push(v)});if(!okl()&&d.sal)S.sal=d.sal;if(!S.pay.length)S.pay=d.pay||[];(d.hol||[]).forEach(function(x){if(S.hol.indexOf(x)<0)S.hol.push(x)});S.paid=Object.assign({},d.paid||{},S.paid);var fzi={};S.frozen.forEach(function(f){fzi[f.id]=1});(d.frozen||[]).forEach(function(f){if(!fzi[f.id])S.frozen.push(f)});if(d.buf&&d.buf.ops){var bd0=bufD(),bi0={};bd0.ops.forEach(function(o){bi0[o.id]=1});d.buf.ops.forEach(function(o){if(!bi0[o.id])bd0.ops.push(o)});if(!bd0.init&&d.buf.init){bd0.init=d.buf.init;bd0.initIn=d.buf.initIn}}if(d.cats&&d.cats.length){S.cats=S.cats||CATS.map(function(c){return c.slice()});d.cats.forEach(function(c){if(!S.cats.some(function(x){return x[0]==c[0]}))S.cats.push(c)})}S.start=S.start||d.start||0;if(!S.salary.next&&d.salary)S.salary=d.salary}else{S=Object.assign({cards:[],wishes:[],plan:{},mplan:{},dis:{},pay:[],hol:[],paid:{},set:{},frozen:[]},d)}CATS=(S.cats&&S.cats.length)?S.cats:defCats();save();theme();render();toast("Данные добавлены ✓")}catch(e){toast("Неверный файл")}};r.readAsText(f)}
-function render(){autoPay();syncNext();migPlan();$("v").innerHTML=[spend,list,stats,cards,prof,wishes,incomes,planMonth,paysched,settings,frozen,buffer][tab]();$("v").style.animation="none";void $("v").offsetWidth;$("v").style.animation="";
+var _lt=-1;
+function render(){autoPay();syncNext();migPlan();var v=$("v"),cs0=document.querySelector(".cats"),sl0=cs0?cs0.scrollLeft:0,st0=v.scrollTop,same=_lt===tab;_lt=tab;v.innerHTML=[spend,list,stats,cards,prof,wishes,incomes,planMonth,paysched,settings,frozen,buffer][tab]();if(!same){v.scrollTop=0;v.style.animation="none";void v.offsetWidth;v.style.animation=""}else{v.scrollTop=st0;var cs1=document.querySelector(".cats");if(cs1)cs1.scrollLeft=sl0}
 $("nav").innerHTML=[["plus","Трата"],["list","Расходы"],["chart","Аналитика"],["card","Карты"],["user","ЛК"]].map(function(t,i){return '<button class="'+(i==(tab>=5?4:tab)?"on":"")+'" onclick="sdate=\'\';dateOpen=false;tab='+i+';render()">'+ic(t[0])+t[1]+'</button>'}).join("")}
 (function(){var R=document.documentElement,txt=/^(INPUT|TEXTAREA|SELECT)$/,no=/checkbox|radio|button|file|submit|range/;
 document.addEventListener("focusin",function(e){var t=e.target;if(t&&txt.test(t.tagName)&&!no.test(t.type||""))document.body.classList.add("kb")});
@@ -775,6 +777,9 @@ document.addEventListener("focusout",function(){setTimeout(function(){var a=docu
 if(window.visualViewport){var f=function(){var v=window.visualViewport;if(window.innerHeight-v.height>120)R.style.setProperty("--vh",v.height+"px");else R.style.removeProperty("--vh")};visualViewport.addEventListener("resize",f);visualViewport.addEventListener("scroll",f)}})();
 function loadLib(u,cb){try{var e=document.createElement("script");e.src=u;e.async=true;e.onload=function(){if(cb)cb()};e.onerror=function(){};document.head.appendChild(e)}catch(x){}}
 function loadLibs(){["https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js","https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"].forEach(function(u){loadLib(u,fillCardSvgs)});loadLib("https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js")}
+(function(){["gesturestart","gesturechange","gestureend"].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()},{passive:false})});
+document.addEventListener("touchmove",function(e){if(e.touches&&e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
+var num=/^(decimal|numeric)$/;document.addEventListener("focusin",function(e){var t=e.target;if(t&&t.tagName=="INPUT"&&num.test(t.getAttribute("inputmode")||""))setTimeout(function(){try{t.select();t.setSelectionRange(0,String(t.value).length)}catch(x){}},30)})})();
 openDB(function(){load(function(){theme();try{render()}catch(e){var v=$("v");if(v)v.innerHTML='<div class="card"><h3>Не удалось показать экран</h3><div class="sec" style="margin-bottom:10px">'+esc(e&&e.message||e)+'</div><button class="btn" onclick="tab=0;render()">На главный экран</button></div>'}setTimeout(loadLibs,200)})});
 </script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})</script>
